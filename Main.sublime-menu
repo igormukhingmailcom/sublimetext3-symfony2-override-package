@@ -1,0 +1,9 @@
+[
+    {
+        "id": "file",
+        "children":
+        [
+            { "command": "symfony_override_file", "caption": "Override..." },
+        ]
+    }
+]

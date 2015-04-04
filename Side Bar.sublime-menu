@@ -1,0 +1,3 @@
+[
+    { "caption": "Override...", "command": "symfony_override_file", "args": {"paths": []} }
+]

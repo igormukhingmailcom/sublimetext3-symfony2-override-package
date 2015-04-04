@@ -1,0 +1,4 @@
+[
+    { "caption": "-", "id": "file" },
+    { "command": "symfony_override_file", "caption": "Override..." }
+]

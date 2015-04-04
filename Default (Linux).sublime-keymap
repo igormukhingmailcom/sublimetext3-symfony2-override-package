@@ -1,0 +1,3 @@
+[
+    { "keys": ["ctrl+shift+o"], "command": "symfony_override_file" }
+]
