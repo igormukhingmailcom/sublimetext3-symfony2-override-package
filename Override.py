@@ -36,6 +36,14 @@ class SymfonyOverrideCommand():
                     bundle_root = project_root
                     bundle_name = os.path.basename(bundle_root)
 
+                    # Get vendor name
+                    (vendor_root, tail) = os.path.split(project_root)
+                    vendor_name = os.path.basename(vendor_root)
+
+                    if ('Bundle' == vendor_name):
+                        (vendor_root, tail) = os.path.split(vendor_root)
+                        vendor_name = os.path.basename(vendor_root)
+
             if 'vendor' == tail:
                 break;
 
@@ -47,13 +55,13 @@ class SymfonyOverrideCommand():
         if '' == bundle_name:
             raise NotSf2BundleError('This path is in vendors, but not inside Symfony2 Bundle directory')
 
-        return project_root, bundle_root, bundle_name, file_path, ext[1:]
+        return project_root, bundle_root, vendor_name, bundle_name, file_path, ext[1:]
 
     def do_override(self, path):
         try:
-            (project_root, bundle_root, bundle_name, file_path, file_ext) = self.get_project_paths(path)
+            (project_root, bundle_root, vendor_name, bundle_name, file_path, file_ext) = self.get_project_paths(path)
             if 'twig' == file_ext:
-                dest_filename = os.path.join(project_root, 'app', file_path.replace('Resources/views', 'Resources/' + bundle_name + '/views'));
+                dest_filename = os.path.join(project_root, 'app', file_path.replace('Resources/views', 'Resources/' + vendor_name + bundle_name + '/views'));
             elif 'php' == file_ext:
                 dest_filename = os.path.join(project_root, 'src/AppBundle', file_path);
             else:
