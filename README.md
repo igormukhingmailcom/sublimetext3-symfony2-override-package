@@ -7,7 +7,7 @@ It greatly simplifies the work with bundles, that have files with a high level o
 ## Features
 
 At this time, package can only do basic operations like:
-- Copy Twig templates from `vendor/BundleName/Resources/views/High/Nesting/Level/template.html.twig` repository to `app/Resources/BundleName/views/High/Nesting/Level/template.html.twig`.
+- Copy Twig templates from `vendor/VendorName/BundleName/Resources/views/High/Nesting/Level/template.html.twig` repository to `app/Resources/VendorNameBundleName/views/High/Nesting/Level/template.html.twig`.
 - Copy `.php` files from `vendor/BundleName/High/Nesting/Level/Whatever.php` repository to `src/AppBundle/High/Nesting/Level/Whatever.php`.
 
 and then open it in editor. Another functions that will be implemented collected in TODO.md
