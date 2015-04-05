@@ -125,7 +125,7 @@ class SymfonyOverrideFileCommand(sublime_plugin.WindowCommand, SymfonyOverrideCo
 
         # We can override templates in app/ directory
         if file_ext in ['twig']:
-            self.bundles.append(os.path.join(src_root, 'app'))
+            self.bundles.append(os.path.join(project_root, 'app'))
             bundles.append('app')
 
         return bundles
