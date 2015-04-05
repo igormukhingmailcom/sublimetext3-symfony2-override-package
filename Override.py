@@ -50,23 +50,26 @@ class SymfonyOverrideCommand():
             if '/' == project_root:
                 raise NotSf2BundleError('This path is not inside vendors directory')
 
-        (_, ext) = os.path.splitext(file_path)
+        file_name = os.path.basename(file_path)
+        _, ext = os.path.splitext(file_name)
 
         if '' == bundle_name:
             raise NotSf2BundleError('This path is in vendors, but not inside PSR-0 Symfony2 Bundle directory')
 
-        return project_root, bundle_root, vendor_name, bundle_name, file_path, ext[1:]
+        return project_root, bundle_root, vendor_name, bundle_name, file_path, file_name, ext[1:]
 
     def do_override(self, path, to):
         try:
-            (project_root, bundle_root, vendor_name, bundle_name, file_path, file_ext) = self.get_project_paths(path)
-            print (to, project_root, bundle_root, vendor_name, bundle_name, file_path, file_ext)
+            project_root, bundle_root, vendor_name, bundle_name, file_path, file_name, file_ext = self.get_project_paths(path)
+
             if '/app' == to[-4:]:
                 if file_ext in ['twig']:
-                    dest_filename = os.path.join(to, file_path.replace('Resources/views', 'Resources/' + vendor_name + bundle_name + '/views'));
+                    dest_filename = os.path.join(to, file_path.replace('Resources/views', 'Resources/' + vendor_name + bundle_name + '/views'))
+                elif file_path[:22] == 'Resources/translations':
+                    dest_filename = os.path.join(to, file_path.replace('Resources/translations', 'Resources/' + vendor_name + bundle_name + '/translations'))
                 else:
                     raise UnsupportedFileTypeError("You can't override files with " + file_ext + " extension to " + to + " folder")
-            elif file_ext in ['php', 'twig']:
+            elif file_ext in ['php', 'twig', 'yml', 'xliff']:
                 dest_filename = os.path.join(to, file_path);
             else:
                 raise UnsupportedFileTypeError('Unsupported File Type')
@@ -106,7 +109,7 @@ class SymfonyOverrideFileCommand(sublime_plugin.WindowCommand, SymfonyOverrideCo
         return 'Bundle' != directory[-6:] and os.path.isdir(directory)
 
     def get_bundles(self, path):
-        project_root, bundle_root, vendor_name, bundle_name, file_path, file_ext = self.get_project_paths(path)
+        project_root, bundle_root, vendor_name, bundle_name, file_path, file_name, file_ext = self.get_project_paths(path)
         src_root = os.path.join(project_root, 'src')
 
         bundles = []
@@ -123,8 +126,8 @@ class SymfonyOverrideFileCommand(sublime_plugin.WindowCommand, SymfonyOverrideCo
 
         self.bundles = [src_root + '/' + str(f) for f in bundles]
 
-        # We can override templates in app/ directory
-        if file_ext in ['twig']:
+        # We can override templates and translations in app/ directory
+        if file_ext in ['twig'] or file_path[:22] == 'Resources/translations':
             self.bundles.append(os.path.join(project_root, 'app'))
             bundles.append('app')
 

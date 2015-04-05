@@ -7,4 +7,4 @@ TODO
 - [x] Select destination Bundle to override to
 - [ ] Replace namespace to new
 - [ ] Generate sylius config
-- [ ] Override translations support
+- [x] Override translations support

@@ -6,11 +6,19 @@ It greatly simplifies the work with bundles, that have files with a high level o
 
 ## Features
 
-At this time, package can only do basic operations like:
-- Copy Twig templates from `vendor/Vendor/BundleName/Resources/views/High/Nesting/Level/template.html.twig` to `app/Resources/VendorBundleName/views/High/Nesting/Level/template.html.twig` or `src/SelectedBundleName/High/Nesting/Level/template.html.twig`.
+At this time, package can override php files, twig templates and translations in any format.
+
+For example, it can:
+- Copy Twig templates from `vendor/Vendor/BundleName/Resources/views/High/Nesting/Level/template.html.twig` to `app/Resources/VendorBundleName/views/High/Nesting/Level/template.html.twig` or `src/SelectedBundleName/Resources/views/High/Nesting/Level/template.html.twig`.
+- Copy `.xliff`, `.yml`, `.php` or whatever files from `vendor/Vendor/BundleName/Resources/translations/whatever.yml` to `src/SelectedBundleName/Resources/translations/whatever.yml` or `app/Resources/SelectedBundleName/translations/whatever.yml`.
 - Copy `.php` files from `vendor/Vendor/BundleName/High/Nesting/Level/Whatever.php` to `src/SelectedBundleName/High/Nesting/Level/Whatever.php`.
 
-and then open it in editor. Another functions that will be implemented collected in TODO.md
+After file have been copied, it automatically opens in editor.
+
+## TODO
+
+Another functions that will be implemented collected in
+[TODO.md](https://github.com/igormukhingmailcom/sublimetext3-symfony2-override-package/TODO.md).
 
 ## Installation
 
