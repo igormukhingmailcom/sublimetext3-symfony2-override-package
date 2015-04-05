@@ -5,6 +5,7 @@ TODO
 - [ ] Recursive override whole folders
 - [ ] Override not only from vendors dir (e.g. from `src/` folder)
 - [x] Select destination Bundle to override to
-- [ ] Replace namespace to new
+- [ ] Automatically replace namespaces in php files to new
 - [ ] Generate sylius config
 - [x] Override translations support
+- [ ] Add package to packagecontrol.io
