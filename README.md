@@ -7,8 +7,8 @@ It greatly simplifies the work with bundles, that have files with a high level o
 ## Features
 
 At this time, package can only do basic operations like:
-- Copy Twig templates from `vendor/VendorName/BundleName/Resources/views/High/Nesting/Level/template.html.twig` repository to `app/Resources/VendorNameBundleName/views/High/Nesting/Level/template.html.twig`.
-- Copy `.php` files from `vendor/BundleName/High/Nesting/Level/Whatever.php` repository to `src/AppBundle/High/Nesting/Level/Whatever.php`.
+- Copy Twig templates from `vendor/Vendor/BundleName/Resources/views/High/Nesting/Level/template.html.twig` to `app/Resources/VendorBundleName/views/High/Nesting/Level/template.html.twig` or `src/SelectedBundleName/High/Nesting/Level/template.html.twig`.
+- Copy `.php` files from `vendor/Vendor/BundleName/High/Nesting/Level/Whatever.php` to `src/SelectedBundleName/High/Nesting/Level/Whatever.php`.
 
 and then open it in editor. Another functions that will be implemented collected in TODO.md
 
@@ -25,7 +25,7 @@ git clone https://github.com/igormukhingmailcom/sublimetext3-symfony2-override-p
 
 ### Override current file
 
-Press `ctrl+shift+o` on Linux.
+Press `ctrl+shift+o` on Linux and select a bundle to copy current file to.
 
 Also `Override...` menu item available at Context Menu, Side Bar Menu and Main Menu -> File.
 
