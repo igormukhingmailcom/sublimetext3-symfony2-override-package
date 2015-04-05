@@ -15,6 +15,12 @@ For example, it can:
 
 After file have been copied, it automatically opens in editor.
 
+## Limitations
+
+- Package work only in Sublime Text 3. Not tested in Sublime Text 2.
+- Package tested only on Ubuntu environment.
+- At that moment package supports overriding only PSR-0 libraries from `vendors` directory
+
 ## TODO
 
 Functions that will be implemented in future collected in
