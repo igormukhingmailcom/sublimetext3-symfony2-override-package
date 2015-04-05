@@ -17,8 +17,8 @@ After file have been copied, it automatically opens in editor.
 
 ## TODO
 
-Another functions that will be implemented collected in
-[TODO.md](https://github.com/igormukhingmailcom/sublimetext3-symfony2-override-package/TODO.md).
+Functions that will be implemented in future collected in
+[TODO.md](https://github.com/igormukhingmailcom/sublimetext3-symfony2-override-package/blob/master/TODO.md).
 
 ## Installation
 
