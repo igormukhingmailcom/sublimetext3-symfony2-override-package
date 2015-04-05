@@ -2,6 +2,7 @@ import sublime
 import sublime_plugin
 import os
 import shutil
+import functools
 
 class NotSf2BundleError(Exception):
     pass
@@ -20,6 +21,18 @@ class SymfonyOverrideCommand():
         else:
             sublime.error_message('Symfony Override: No file to override')
             return False
+
+    def is_views_file_path(self, file_path):
+        return file_path[:15] == 'Resources/views'
+
+    def is_translations_file_path(self, file_path):
+        return file_path[:22] == 'Resources/translations'
+
+    def is_app_destination(self, destination_root):
+        return '/app' == destination_root[-4:]
+
+    def can_override_to_app(self, file_path):
+        return self.is_views_file_path(file_path) or self.is_translations_file_path(file_path)
 
     def get_project_paths(self, path):
         file_path = os.path.basename(path)
@@ -40,7 +53,7 @@ class SymfonyOverrideCommand():
                     (vendor_root, tail) = os.path.split(project_root)
                     vendor_name = os.path.basename(vendor_root)
 
-                    if ('Bundle' == vendor_name):
+                    if 'Bundle' == vendor_name:
                         (vendor_root, tail) = os.path.split(vendor_root)
                         vendor_name = os.path.basename(vendor_root)
 
@@ -58,19 +71,19 @@ class SymfonyOverrideCommand():
 
         return project_root, bundle_root, vendor_name, bundle_name, file_path, file_name, ext[1:]
 
-    def do_override(self, path, to):
+    def override_to_path(self, path, destination_root):
         try:
             project_root, bundle_root, vendor_name, bundle_name, file_path, file_name, file_ext = self.get_project_paths(path)
 
-            if '/app' == to[-4:]:
-                if file_ext in ['twig']:
-                    dest_filename = os.path.join(to, file_path.replace('Resources/views', 'Resources/' + vendor_name + bundle_name + '/views'))
-                elif file_path[:22] == 'Resources/translations':
-                    dest_filename = os.path.join(to, file_path.replace('Resources/translations', 'Resources/' + vendor_name + bundle_name + '/translations'))
+            if self.is_app_destination(destination_root):
+                if self.is_views_file_path(file_path):
+                    dest_filename = os.path.join(destination_root, file_path.replace('Resources/views', 'Resources/' + vendor_name + bundle_name + '/views'))
+                elif self.is_translations_file_path(file_path):
+                    dest_filename = os.path.join(destination_root, file_path.replace('Resources/translations', 'Resources/' + vendor_name + bundle_name + '/translations'))
                 else:
-                    raise UnsupportedFileTypeError("You can't override files with " + file_ext + " extension to " + to + " folder")
+                    raise UnsupportedFileTypeError("You can't override files with " + file_ext + " extension to " + destination_root + " folder")
             elif file_ext in ['php', 'twig', 'yml', 'xliff']:
-                dest_filename = os.path.join(to, file_path);
+                dest_filename = os.path.join(destination_root, file_path);
             else:
                 raise UnsupportedFileTypeError('Unsupported File Type')
 
@@ -99,8 +112,8 @@ class SymfonyOverrideFileCommand(sublime_plugin.WindowCommand, SymfonyOverrideCo
         if index == -1:
             return
 
-        to = self.bundles[index];
-        self.do_override(path, to)
+        destination_root = self.bundles[index];
+        self.override_to_path(path, destination_root)
 
     def is_src_bundle_directory(self, directory):
         return 'Bundle' == directory[-6:] and os.path.isdir(directory)
@@ -126,16 +139,14 @@ class SymfonyOverrideFileCommand(sublime_plugin.WindowCommand, SymfonyOverrideCo
 
         self.bundles = [src_root + '/' + str(f) for f in bundles]
 
-        # We can override templates and translations in app/ directory
-        if file_ext in ['twig'] or file_path[:22] == 'Resources/translations':
+        # We can override views and translations in app/ directory
+        if self.can_override_to_app(file_path):
             self.bundles.append(os.path.join(project_root, 'app'))
             bundles.append('app')
 
         return bundles
 
     def run(self, paths=[], parameters=None):
-        import functools
-
         path = self.get_path(paths)
         if not path:
             return
@@ -143,6 +154,5 @@ class SymfonyOverrideFileCommand(sublime_plugin.WindowCommand, SymfonyOverrideCo
         try:
             bundles = self.get_bundles(path)
             self.window.show_quick_panel(bundles, functools.partial(self.override_to_bundle, path), 0)
-
         except Exception as e:
             sublime.error_message(str(e))
