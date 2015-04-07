@@ -14,7 +14,7 @@ For example, it can:
 - Copy `.php` files from `vendor/Vendor/BundleName/High/Nesting/Level/Whatever.php` to `src/SelectedBundleName/High/Nesting/Level/Whatever.php`.
   - Replace old namespace to new one
   - Paste `use Vendor\BundleName\High\Nesting\Level\Whatever as BaseWhatever` statement with source class namespace
-    - Replace `class Whatever` or `class Whatever extends SomeBaseClass` to `class Whatever extends BaseWhatever`
+  - Replace `class Whatever` or `class Whatever extends SomeBaseClass` to `class Whatever extends BaseWhatever`
 - Copy files from `public` folder to selected bundle
 
 After file have been copied, it automatically opens in editor.
