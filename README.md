@@ -1,5 +1,7 @@
 # Symfony2 Override
 
+[![Join the chat at https://gitter.im/igormukhingmailcom/sublimetext3-symfony2-override-package](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/igormukhingmailcom/sublimetext3-symfony2-override-package?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Sublime Text 3 Package for easy overriding files from Symfony2 bundles.
 
 It greatly simplifies the work with bundles, that have files with a high level of nesting.
