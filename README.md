@@ -12,6 +12,10 @@ For example, it can:
 - Copy Twig templates from `vendor/Vendor/BundleName/Resources/views/High/Nesting/Level/template.html.twig` to `app/Resources/VendorBundleName/views/High/Nesting/Level/template.html.twig` or `src/SelectedBundleName/Resources/views/High/Nesting/Level/template.html.twig`.
 - Copy `.xliff`, `.yml`, `.php` or whatever files from `vendor/Vendor/BundleName/Resources/translations/whatever.yml` to `src/SelectedBundleName/Resources/translations/whatever.yml` or `app/Resources/VendorBundleName/translations/whatever.yml`.
 - Copy `.php` files from `vendor/Vendor/BundleName/High/Nesting/Level/Whatever.php` to `src/SelectedBundleName/High/Nesting/Level/Whatever.php`.
+  - Replace old namespace to new one
+  - Paste `use Vendor\BundleName\High\Nesting\Level\Whatever as BaseWhatever` statement with source class namespace
+    - Replace `class Whatever` or `class Whatever extends SomeBaseClass` to `class Whatever extends BaseWhatever`
+- Copy files from `public` folder to selected bundle
 
 After file have been copied, it automatically opens in editor.
 
