@@ -1,6 +1,7 @@
 # Symfony2 Override
 
 [![Join the chat at https://gitter.im/igormukhingmailcom/sublimetext3-symfony2-override-package](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/igormukhingmailcom/sublimetext3-symfony2-override-package?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![See package at https://packagecontrol.io/](https://packagecontrol.herokuapp.com/downloads/Symfony2%20Override.svg)](https://packagecontrol.io/packages/Symfony2%20Override)
 
 Sublime Text 3 Package for easy overriding files from Symfony2 bundles.
 
