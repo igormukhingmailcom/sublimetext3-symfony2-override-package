@@ -8,7 +8,7 @@ It greatly simplifies the work with bundles, that have files with a high level o
 
 ## Features
 
-At this time, package can override php files, twig templates and translations in any format.
+At this time, package can override php files, twig templates, translations in any format and any file from `Resources/public` folder.
 
 For example, it can:
 - Copy Twig templates from `vendor/Vendor/BundleName/Resources/views/High/Nesting/Level/template.html.twig` to `app/Resources/VendorBundleName/views/High/Nesting/Level/template.html.twig` or `src/SelectedBundleName/Resources/views/High/Nesting/Level/template.html.twig`.
@@ -17,7 +17,7 @@ For example, it can:
   - Replace old namespace to new one
   - Paste `use Vendor\BundleName\High\Nesting\Level\Whatever as BaseWhatever` statement with source class namespace
   - Replace `class Whatever` or `class Whatever extends SomeBaseClass` to `class Whatever extends BaseWhatever`
-- Copy files from `public` folder to selected bundle
+- Copy files from `public` folder to selected bundle (css, js, etc)
 
 After file have been copied, it automatically opens in editor.
 
@@ -40,6 +40,12 @@ Functions that will be implemented in future collected in
 cd ~/.config/sublime-text-3/Packages
 git clone https://github.com/igormukhingmailcom/sublimetext3-symfony2-override-package.git "Symfony2 Override"
 ```
+
+### Via Package Control
+
+Install [Package Control](https://packagecontrol.io/installation) in your Sublime Text.
+
+Press `Ctrl+Shift+P`, type `Install Package`, press `Enter`, type `Symfony2 Override`, press `Enter`.
 
 ## Usage
 

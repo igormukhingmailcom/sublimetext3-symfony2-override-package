@@ -8,4 +8,4 @@ TODO
 - [x] Automatically replace namespaces in php files to new
 - [ ] Generate sylius config
 - [x] Override translations support
-- [ ] Add package to packagecontrol.io
+- [x] Add package to packagecontrol.io
