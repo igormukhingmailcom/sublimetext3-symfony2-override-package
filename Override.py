@@ -203,6 +203,13 @@ class SymfonyOverrideFileCommand(sublime_plugin.WindowCommand, SymfonyOverrideCo
             bundles += [vendor + '/' + f for f in os.listdir(vendor_root) if self.is_src_bundle_directory(vendor_root + '/' + f)]
         bundles.sort()
 
+        # Scan src/Application/Vendor directories
+        vendors = [f for f in os.listdir(src_root + '/Application/') if self.is_src_vendor_directory(src_root + '/Application/' + f)]
+        for vendor in vendors:
+            vendor_root = src_root + '/Application/' + vendor
+            bundles += ['Application/' + vendor + '/' + f for f in os.listdir(vendor_root) if self.is_src_bundle_directory(vendor_root + '/' + f)]
+        bundles.sort()
+
         self.bundles = [src_root + '/' + str(f) for f in bundles]
 
         # We can override views and translations in app/ directory
