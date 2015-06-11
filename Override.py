@@ -40,6 +40,9 @@ class SymfonyOverrideCommand():
     def can_override_to_app(self, file_path):
         return self.is_views_file_path(file_path) or self.is_translations_file_path(file_path)
 
+    def is_psr0bundle_root(self, path):
+        return 'Bundle' == path[-6:]
+
     def get_project_paths(self, path, root_path = 'vendor', namespace_include_file=False):
         file_path = os.path.basename(path)
         project_root = os.path.dirname(path)
@@ -55,7 +58,7 @@ class SymfonyOverrideCommand():
             if bundle_root == '':
                 file_path = os.path.join(tail, file_path)
 
-                if 'Bundle' == project_root[-6:]:
+                if self.is_psr0bundle_root(project_root):
                     bundle_root = project_root
                     bundle_name = os.path.basename(bundle_root)
 
