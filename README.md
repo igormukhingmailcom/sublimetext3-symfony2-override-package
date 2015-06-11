@@ -25,7 +25,7 @@ After file have been copied, it automatically opens in editor.
 ## Limitations
 
 - Package work only in Sublime Text 3. Not tested in Sublime Text 2.
-- Package tested only on Ubuntu environment.
+- Package tested only on Ubuntu and MacOS environment.
 - At that moment package supports overriding only PSR-0 libraries from `vendors` directory
 
 ## TODO
@@ -37,8 +37,17 @@ Functions that will be implemented in future collected in
 
 ### Manual
 
+#### Ubuntu
+
 ```bash
 cd ~/.config/sublime-text-3/Packages
+git clone https://github.com/igormukhingmailcom/sublimetext3-symfony2-override-package.git "Symfony2 Override"
+```
+
+#### MacOS
+
+```bash
+cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
 git clone https://github.com/igormukhingmailcom/sublimetext3-symfony2-override-package.git "Symfony2 Override"
 ```
 
@@ -52,7 +61,9 @@ Press `Ctrl+Shift+P`, type `Install Package`, press `Enter`, type `Symfony2 Over
 
 ### Override current file
 
-Press `ctrl+shift+o` on Linux and select a bundle to copy current file to.
+Press `Ctrl+Shift+O` on Linux 
+or `Command+Shift+O` on MacOs
+and select a bundle to copy current file to.
 
 Also `Override...` menu item available at Context Menu, Side Bar Menu and Main Menu -> File.
 
